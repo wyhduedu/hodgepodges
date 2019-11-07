@@ -72,7 +72,7 @@ public class HeartBeatClient {
         final ChannelFuture channelFuture = bootstrap.connect(host, port);
         channelFuture.addListener(new ChannelFutureListener() {
             @Override
-            public void operationComplete(ChannelFuture futureListener)  {
+            public void operationComplete(ChannelFuture futureListener) {
                 if (channelFuture.isSuccess()) {
                     channel = futureListener.channel();
                     System.out.println("connect server successfully");
@@ -100,7 +100,7 @@ public class HeartBeatClient {
         }
 
         @Override
-        protected void initChannel(SocketChannel socketChannel)   {
+        protected void initChannel(SocketChannel socketChannel) {
             ChannelPipeline pipeline = socketChannel.pipeline();
             pipeline.addLast(new IdleStateHandler(0, 5, 0));
             pipeline.addLast("encoder", new StringEncoder());

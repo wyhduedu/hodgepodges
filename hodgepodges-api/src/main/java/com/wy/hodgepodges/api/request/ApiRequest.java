@@ -1,7 +1,7 @@
-package com.wy.hodgepodges.sdk.request;
+package com.wy.hodgepodges.api.request;
 
 
-import com.wy.hodgepodges.sdk.request.common.SdkRequest;
+import com.wy.hodgepodges.api.request.common.SdkRequest;
 
 /**
  * @author wy

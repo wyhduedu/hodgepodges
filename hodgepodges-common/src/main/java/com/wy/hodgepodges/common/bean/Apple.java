@@ -3,6 +3,7 @@ package com.wy.hodgepodges.common.bean;
 import com.wy.hodgepodges.common.annotation.FruitColor;
 import com.wy.hodgepodges.common.annotation.FruitName;
 import com.wy.hodgepodges.common.annotation.FruitProvider;
+import lombok.Data;
 
 
 /**
@@ -11,7 +12,6 @@ import com.wy.hodgepodges.common.annotation.FruitProvider;
  * @desc
  * @date 2019-10-31 15:48
  */
-
 public class Apple  {
 
     @FruitName(name=  "Apple")

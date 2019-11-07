@@ -1,6 +1,6 @@
-package com.wy.hodgepodges.sdk.response.common;
+package com.wy.hodgepodges.api.response.common;
 
-import com.wy.hodgepodges.sdk.enums.ErrorCodeMsg;
+import com.wy.hodgepodges.api.enums.ErrorCodeMsg;
 import lombok.Data;
 
 import java.io.Serializable;

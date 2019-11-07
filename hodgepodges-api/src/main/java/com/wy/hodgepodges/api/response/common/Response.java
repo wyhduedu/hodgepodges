@@ -1,4 +1,4 @@
-package com.wy.hodgepodges.sdk.response.common;
+package com.wy.hodgepodges.api.response.common;
 
 import lombok.Data;
 

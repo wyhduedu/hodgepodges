@@ -1,7 +1,7 @@
-package com.wy.hodgepodges.sdk.response;
+package com.wy.hodgepodges.api.response;
 
 
-import com.wy.hodgepodges.sdk.response.common.SdkResponse;
+import com.wy.hodgepodges.api.response.common.SdkResponse;
 
 /**
  * @author wy

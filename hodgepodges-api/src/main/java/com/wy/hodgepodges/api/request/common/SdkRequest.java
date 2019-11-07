@@ -1,4 +1,4 @@
-package com.wy.hodgepodges.sdk.request.common;
+package com.wy.hodgepodges.api.request.common;
 
 import lombok.Data;
 
