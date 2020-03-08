@@ -1,8 +1,8 @@
 package com.wy.hodgepodges.service;
 
 
-import com.wy.hodgepodges.api.request.ApiRequest;
-import com.wy.hodgepodges.api.response.ApiResponse;
+import com.wy.hodgepodges.sdk.request.ApiRequest;
+import com.wy.hodgepodges.sdk.response.ApiResponse;
 
 import java.util.HashMap;
 
