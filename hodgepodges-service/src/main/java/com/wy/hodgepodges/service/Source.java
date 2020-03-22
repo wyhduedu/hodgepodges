@@ -1,5 +1,9 @@
 package com.wy.hodgepodges.service;
 
+import org.aspectj.weaver.Iterators;
+
+import java.util.Iterator;
+
 /**
  * @author wy
  * @version V1.0
@@ -9,6 +13,7 @@ package com.wy.hodgepodges.service;
 public class Source {
 
     public void method1() {
+        Iterator iterator = Iterators.array(new Object[]{});
         System.out.println("this is original method!");
     }
 }

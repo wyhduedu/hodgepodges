@@ -7,11 +7,15 @@ package com.wy.hodgepodges.common.aspect;
  * @version V1.0
  */
 
+import com.wy.hodgepodges.common.annotation.Action;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.*;
+import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+import java.lang.reflect.Method;
 import java.util.Arrays;
 
 /**
@@ -26,12 +30,27 @@ public class WebLogAspect {
 
     ThreadLocal<Long> startTime = new ThreadLocal<>();
 
-    @Pointcut("execution(public * com.wy.hodgepodges.*.*Controller(..))")
+    @Pointcut("@annotation(com.wy.hodgepodges.common.annotation.Action)")
     public void webLog() {
     }
 
-    @Before("webLog()")
+    @Before("execution(* com.wy.hodgepodges.*(..))")
     public void doBefore(JoinPoint joinPoint) throws Throwable {
+        startTime.set(System.currentTimeMillis());
+        MethodSignature signature = (MethodSignature) joinPoint.getSignature();
+        Method method = signature.getMethod();
+        Action action = method.getAnnotation(Action.class);
+        method.getDefaultValue();
+
+
+        log.info("CLASS_METHOD : " + joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName());
+        log.info("ARGS : " + Arrays.toString(joinPoint.getArgs()));
+
+    }
+
+
+    @After("webLog()")
+    public void after(JoinPoint joinPoint) throws Throwable {
         startTime.set(System.currentTimeMillis());
 
         // 接收到请求，记录请求内容
@@ -46,6 +65,8 @@ public class WebLogAspect {
         log.info("ARGS : " + Arrays.toString(joinPoint.getArgs()));
 
     }
+
+
 
     @AfterReturning(returning = "ret", pointcut = "webLog()")
     public void doAfterReturning(Object ret) throws Throwable {

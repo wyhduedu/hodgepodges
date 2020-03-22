@@ -7,6 +7,6 @@ package com.wy.hodgepodges.common.design.handler;
  * @date 2019-11-06 23:27
  */
 public interface Handler {
-    public void operator();
+      void operator();
 
 }

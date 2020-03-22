@@ -48,7 +48,7 @@
         <spring.boot.version>2.2.1.RELEASE</spring.boot.version>
         <mybatis.spring.boot.version>2.1.1</mybatis.spring.boot.version>
 
-        <hodgepodges.api.version>0.0.1-SNAPSHOT</hodgepodges.api.version>
+        <hodgepodges.api.version>0.0.2-SNAPSHOT</hodgepodges.api.version>
         <hodgepodges.version>0.0.1-SNAPSHOT</hodgepodges.version>
 
     </properties>
@@ -58,8 +58,9 @@
             <dependency>
                 <groupId>com.wy</groupId>
                 <artifactId>hodgepodges-api</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
+                <version>${hodgepodges.api.version}</version>
             </dependency>
+
             <dependency>
                 <groupId>com.wy</groupId>
                 <artifactId>hodgepodges-api-service</artifactId>
@@ -126,6 +127,42 @@
             </dependency>
 
             <dependency>
+                <groupId>com.alibaba.druid</groupId>
+                <artifactId>druid-wrapper</artifactId>
+                <version>0.2.9</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>1.1.12</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-jdbc</artifactId>
+             </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-data-redis</artifactId>
+            </dependency>
+            <!-- Java Persistence API, ORM 规范 -->
+<!--            <dependency>-->
+<!--                <groupId>org.springframework.boot</groupId>-->
+<!--                <artifactId>spring-boot-starter-data-jpa</artifactId>-->
+<!--            </dependency>-->
+            <!-- 数据库连接 -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-jdbc</artifactId>
+            </dependency>
+            <!-- MySQL 驱动, 注意, 这个需要与 MySQL 版本对应 -->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>8.0.18</version>
+                <scope>runtime</scope>
+            </dependency>
+
+            <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <version>${lombok.version}</version>
@@ -142,6 +179,38 @@
                 <artifactId>spring-context</artifactId>
                 <version>${spring.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>1.2.67</version>
+            </dependency>
+
+            <dependency>
+                <groupId>commons-fileupload</groupId>
+                <artifactId>commons-fileupload</artifactId>
+                <version>1.3.1</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>2.6</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>2.9.2</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>2.9.2</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-webflux</artifactId>
+            </dependency>
+
 
         </dependencies>
     </dependencyManagement>
@@ -159,6 +228,10 @@
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -187,6 +260,49 @@
             </plugin>
         </plugins>
     </build>
+
+    <repositories>
+        <repository>
+            <id>spring-snapshots</id>
+            <name>spring Snapshots</name>
+            <url>https://repo.spring.io/snapshot/</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>interval:2</updatePolicy>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>spring-snapshots</id>
+            <name>spring milestone</name>
+            <url>https://repo.spring.io/milestone/</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>interval:2</updatePolicy>
+            </snapshots>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>spring-snapshots</id>
+            <name>spring Snapshots</name>
+            <url>https://repo.spring.io/snapshot/</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>interval:2</updatePolicy>
+            </snapshots>
+        </pluginRepository>
+        <pluginRepository>
+            <id>spring-snapshots</id>
+            <name>spring milestone</name>
+            <url>https://repo.spring.io/milestone/</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>interval:2</updatePolicy>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+
+
 
 
 </project>

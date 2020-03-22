@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>往来函证</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
+
+	<style type="text/css">
+		body { padding: 0px; margin: 0px; font-size: 14px; background-color: #f3f3f3; }
+		p { padding: 0px; margin: 0px; line-height: 24px; }
+		table { width: 650px; border-spacing: 0px; border-collapse: collapse; table-layout: fixed; }
+		tr { height: 26px; }
+		td { text-align: center; word-wrap: break-word; word-break:break-all; }
+		.main-body { position: relative; max-width: 700px; margin: 0px auto; }
+		.page { min-height: 970px; padding: 20px 25px; margin-bottom: 10px; background-color: #fff; }
+		.page-title { margin-bottom: 10px; font-size: 24px; font-weight: bold; text-align: center; line-height: 30px; }
+		.page-group { padding-top: 10px; }
+		.page-break { page-break-after: always; }
+		.page-clear { clear: all; }
+		.pull-right { text-align: right; }
+		.indent { text-indent: 2em; }
+		.tablewrap { width: 650px; float: left; }
+		.border { border: 1px solid #666; }
+		.amount { text-align: right; }
+	</style>
+</head>
+<body>
+	<div class="main-body">
+		<div class="page">
+			<div class="page-title">
+				<table>
+					<tr>
+						<td>
+							<div class="qrcode" style="width: 70px; height: 70px;">${confirmation.twoCode!""}</div>
+						</td>
+						<td>
+							<p style="font-size: 24px; font-weight: bold;">往来款项询证函</p>
+						</td>
+						<td>
+							<div style="width: 70px; height: 70px;">&nbsp;</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div style="padding-left: 500px;">
+				<p>索引号：${confirmation.keyId}</p>
+				<p>编&nbsp;号：${confirmation.projectId?c}-${confirmation.id?c}</p>
+			</div>
+			<div style="padding: 15px 0px;">
+				<p style="line-height: 40px;">地址：${confirmation.companyAddress!""}</p>
+				<p style="line-height: 40px;">单位：${confirmation.company!""}</p>
+			</div>
+
+			<div class="page-group">
+				<p class="indent">本公司聘请的中汇会计师事务所（特殊普通合伙）正在对本公司<ins>&nbsp;${confirmation.section!""}&nbsp;</ins>财务报表进行审计，按照中国注册会计师审计准则的要求，应当询证本公司与贵公司的往来账项等事项。下列数据出自本公司账簿记录，如与贵公司记录相符，请在本函下端“数据证明无误”处签章证明；如有不符，请在“数据不符”处签章并列明不符金额。</p>
+				<p class="indent">回函请直接寄至中汇会计师事务所（特殊普通合伙）。</p>
+				<p class="indent">收件人：函证中心&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;回函地址：杭州市钱江新城新业路8号UDC时代大厦A座23层</p>
+				<p class="indent">邮编：310016&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;联系电话：(0571)-88879019</p>
+				<p class="indent">函证中心邮箱：hzzx@zhcpa.cn</p>
+			</div>
+
+			<div class="page-group">
+				<p class="indent">1. 本公司与贵公司的往来账项列示如下：</p>
+				<div class="tablewrap">
+					<table style="margin-top: 5px;">
+						<tr>
+							<td class="border" style="width: 100px">会计科目/交易事项</td>
+							<td class="border" style="width: 100px">截止日期</td>
+							<td class="border" style="width: 100px">贵公司欠本公司</td>
+							<td class="border" style="width: 100px">本公司欠贵公司</td>
+							<td class="border" style="width: 100px">交易金额</td>
+							<td class="border" style="width: 100px">备注</td>
+						</tr>
+					</table>
+				</div>
+				<#list contact as item>
+				<div class="tablewrap">
+					<table>
+						<tr>
+							<td class="border" style="width: 100px">${item.subject!""}</td>
+							<td class="border" style="width: 100px">${item.endTime!""}</td>
+							<#if (item.owes)??>
+								<td class="border amount" style="width: 100px">${item.owes?string(",##0.00")}</td>
+							<#else>
+								<td class="border" style="width: 100px">&nbsp;</td>
+							</#if>
+							<#if (item.owed)??>
+								<td class="border amount" style="width: 100px">${item.owed?string(",##0.00")}</td>
+							<#else>
+								<td class="border" style="width: 100px">&nbsp;</td>
+							</#if>
+							<#if (item.accural)??>
+								<td class="border amount" style="width: 100px">${item.accural?string(",##0.00")}</td>
+							<#else>
+								<td class="border" style="width: 100px">&nbsp;</td>
+							</#if>
+							<td class="border" style="width: 100px">${item.remark!""}</td>
+						</tr>
+					</table>
+				</div>
+				</#list>
+			</div>
+
+			<div class="page-group tablewrap">
+				<p class="indent">2. 其他事项：</p>
+				<table style="margin-top: 5px;">
+					<tr style="height: 60px;">
+						<td class="border" style="vertical-align: top; width: 100%; padding: 0px 10px; text-align: left;">${confirmation.other!""}&nbsp;</td>
+					</tr>
+				</table>
+				<div style="font-size: 12px;">说明：本函仅为复核账目之用，并非催款结算。若款项在上述日期之后已付清，仍请及时函复为盼。</div>
+			</div>
+
+			<div class="page-group tablewrap" style="padding-top: 70px;">
+				<div>
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;公司盖章：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日期：&nbsp;&nbsp;&nbsp;&nbsp;</p>
+				</div>
+				<table style="margin-top: 5px;">
+					<tr>
+						<td class="border" style="width: 50%; padding: 10px 0px; text-align: left;">
+							<p>&nbsp;&nbsp;结论：1. 数据证明无误</p>
+							<p><br/><br/><br/><br/></p>
+							<p>&nbsp;&nbsp;&nbsp;&nbsp;盖章：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日期：</p>
+						</td>
+						<td class="border" style="width: 50%; padding: 10px 0px; text-align: left;">
+							<p>&nbsp;&nbsp;2. 数据不符（请列明不符金额）</p>
+							<p><br/><br/><br/><br/></p>
+							<p>&nbsp;&nbsp;&nbsp;&nbsp;盖章：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日期：</p>
+						</td>
+					</tr>
+					<tr style="height: 20px;">
+						<td class="border" colspan="2" style="text-align: left;">说明：其他事项系如担保、抵押情况以及其他需要询证的事项。</td>
+					</tr>
+				</table>
+			</div>
+			<div class="page-clear"></div>
+		</div>
+	</div>
+</body>
+</html>

@@ -13,6 +13,7 @@ public class aaaa {
 
     static class MyTask {
         private static ReentrantLock rl = new ReentrantLock();
+
         private static Condition conditionA = rl.newCondition();
         private static Condition conditionB = rl.newCondition();
         private static Condition conditionC = rl.newCondition();
@@ -51,29 +52,9 @@ public class aaaa {
 
     public static void main(String[] args) {
         final MyTask myTask = new MyTask();
-        new Thread(new Runnable() {
-
-            @Override
-            public void run() {
-                myTask.execute("A");
-            }
-        }, "A").start();
-
-        new Thread(new Runnable() {
-
-            @Override
-            public void run() {
-                myTask.execute("B");
-            }
-        }, "B").start();
-
-        new Thread(new Runnable() {
-
-            @Override
-            public void run() {
-                myTask.execute("C");
-            }
-        }, "C").start();
+        new Thread(() -> myTask.execute("A"), "A").start();
+        new Thread(() -> myTask.execute("B"), "B").start();
+        new Thread(() -> myTask.execute("C"), "C").start();
     }
 
 }

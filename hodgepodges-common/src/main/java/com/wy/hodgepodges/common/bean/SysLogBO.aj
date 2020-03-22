@@ -1,12 +1,15 @@
 package com.wy.hodgepodges.common.bean;
 
 
+import lombok.Data;
+
 /**
  * @author wy
  * @desc
  * @date 2019-11-01 10:12
  * @version V1.0
  */
+@Data
 public class SysLogBO {
 
     public String className;
@@ -21,51 +24,4 @@ public class SysLogBO {
 
     public String createDate;
 
-    public String getClassName() {
-        return className;
-    }
-
-    public void setClassName(String className) {
-        this.className = className;
-    }
-
-    public String getMethodName() {
-        return methodName;
-    }
-
-    public void setMethodName(String methodName) {
-        this.methodName = methodName;
-    }
-
-    public String getParams() {
-        return params;
-    }
-
-    public void setParams(String params) {
-        this.params = params;
-    }
-
-    public Long getExeuTime() {
-        return exeuTime;
-    }
-
-    public void setExeuTime(Long exeuTime) {
-        this.exeuTime = exeuTime;
-    }
-
-    public String getRemark() {
-        return remark;
-    }
-
-    public void setRemark(String remark) {
-        this.remark = remark;
-    }
-
-    public String getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(String createDate) {
-        this.createDate = createDate;
-    }
 }

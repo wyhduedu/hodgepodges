@@ -1,5 +1,6 @@
 package com.wy.hodgepodges.api.service;
 
+
 /**
  * @author wy
  * @version V1.0
@@ -7,4 +8,7 @@ package com.wy.hodgepodges.api.service;
  * @date 2020-03-08 12:05
  */
 public class fff {
+
+    public static void main(String[] args) {
+    }
 }

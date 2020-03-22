@@ -15,8 +15,9 @@ import java.util.Arrays;
  * @desc
  * @date 2019-11-29 21:30
  */
-public class cfdf {
-    public static void main(String[] args) throws ApiException {
+public class cfdf extends WebApplicationTests{
+
+    public static void main(String[] args)  {
 
         JSONObject jsonObject = new JSONObject();
 //        DingTalkClient client = new DefaultDingTalkClient("https://oapi.dingtalk.com/robot/send?access_token=ba6f07335e953814413e7ad42308f4c7a4cadd77f87a5989f8a2303743763cd5");
@@ -55,7 +56,11 @@ public class cfdf {
         request.setAesKey("1234567890123456789012345678901234567890123");
         request.setToken("123456");
         request.setCallBackTag(Arrays.asList("user_add_org", "user_modify_org", "user_leave_org"));
-        OapiCallBackRegisterCallBackResponse response = client.execute(request,"11222");
+        try {
+            OapiCallBackRegisterCallBackResponse response = client.execute(request,"11222");
+        } catch (ApiException e) {
+            e.printStackTrace();
+        }
 
 
     }
