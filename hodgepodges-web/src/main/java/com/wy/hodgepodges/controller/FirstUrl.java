@@ -1,6 +1,7 @@
 package com.wy.hodgepodges.controller;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,6 +27,7 @@ public class FirstUrl {
         return "11" + request.getRequestURI() + "cam access";
     }
 
+    @CacheEvict()
     @RequestMapping(value = "/requestParam", produces = "text/plain;charset=UTF-8")
     public @ResponseBody String passRequestParam(Long id, HttpServletRequest request) {
         log.info("url" + request.getRequestURL() + "can access" + "  " + id);

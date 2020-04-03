@@ -3,6 +3,7 @@ package com.wy.hodgepodges.config;
 import com.alibaba.dubbo.config.spring.context.annotation.EnableDubbo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.aop.interceptor.AsyncUncaughtExceptionHandler;
+import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
@@ -10,17 +11,14 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
 import org.springframework.scheduling.annotation.AsyncConfigurer;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
@@ -49,12 +47,13 @@ import java.util.concurrent.Executor;
 @CachePut
 @CacheEvict
 @EnableSwagger2
-@Profile("dev")
+@EnableTransactionManagement
+@EnableBatchProcessing
 @ComponentScan("com.wy.hodgepodges")
-public class ConfigAdapter extends WebMvcConfigurationSupport  implements AsyncConfigurer {
+public class ConfigAdapter /*extends WebMvcConfigurationSupport*/ implements AsyncConfigurer {
 
     @Override
-    public Executor getAsyncExecutor(){
+    public Executor getAsyncExecutor() {
         ThreadPoolTaskExecutor taskExecutor = new ThreadPoolTaskExecutor();
         taskExecutor.setCorePoolSize(5);
         taskExecutor.setMaxPoolSize(10);
@@ -63,29 +62,29 @@ public class ConfigAdapter extends WebMvcConfigurationSupport  implements AsyncC
         return taskExecutor;
 
     }
+
     @Override
     public AsyncUncaughtExceptionHandler getAsyncUncaughtExceptionHandler() {
         return null;
     }
 
 
-    @Override
-    protected void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/login").setViewName("login");
-        registry.addViewController("/toUpload").setViewName("/upload");
-    }
+//    @Override
+//    protected void addViewControllers(ViewControllerRegistry registry) {
+//        registry.addViewController("/login").setViewName("login");
+//        registry.addViewController("/toUpload").setViewName("/upload");
+//    }
 
     /**
      * 解决请求路径带.的url失效问题
-     * @param configurer
      */
-    @Override
-    protected void configurePathMatch(PathMatchConfigurer configurer) {
-        configurer.setUseRegisteredSuffixPatternMatch(false);
-    }
+//    @Override
+//    protected void configurePathMatch(PathMatchConfigurer configurer) {
+//        configurer.setUseRegisteredSuffixPatternMatch(false);
+//    }
 
     @Bean
-    public MultipartResolver multipartResolver(){
+    public MultipartResolver multipartResolver() {
         CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
         multipartResolver.setMaxUploadSize(1000000);
         return multipartResolver;
@@ -93,6 +92,7 @@ public class ConfigAdapter extends WebMvcConfigurationSupport  implements AsyncC
 
     /**
      * swagge配置
+     *
      * @return
      */
     @Bean
@@ -113,4 +113,6 @@ public class ConfigAdapter extends WebMvcConfigurationSupport  implements AsyncC
                 new Contact("tenmao", "https://www.jianshu.com/u/518bde83a9bc", "wy_hdu_edu@163.com"),
                 "License of API", "API license URL", Collections.emptyList());
     }
+
+
 }

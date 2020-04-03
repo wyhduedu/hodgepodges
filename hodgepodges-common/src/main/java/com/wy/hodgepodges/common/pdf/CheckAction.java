@@ -4,7 +4,6 @@ import com.google.common.collect.Maps;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,7 +18,7 @@ import java.util.Map;
  *
  * @author admin
  */
-public class CheckAction extends MultiActionController {
+public class CheckAction  {
     /**
      * 生成函证
      * @param request

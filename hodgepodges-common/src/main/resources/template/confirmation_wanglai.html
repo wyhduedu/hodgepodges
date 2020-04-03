@@ -30,7 +30,7 @@
 				<table>
 					<tr>
 						<td>
-							<div class="qrcode" style="width: 70px; height: 70px;">${confirmation.twoCode!""}</div>
+							<div class="qrcode" style="width: 70px; height: 70px;">dd</div>
 						</td>
 						<td>
 							<p style="font-size: 24px; font-weight: bold;">往来款项询证函</p>
@@ -42,16 +42,16 @@
 				</table>
 			</div>
 			<div style="padding-left: 500px;">
-				<p>索引号：${confirmation.keyId}</p>
-				<p>编&nbsp;号：${confirmation.projectId?c}-${confirmation.id?c}</p>
+				<p>索引号： </p>
+				<p>编&nbsp;号： </p>
 			</div>
 			<div style="padding: 15px 0px;">
-				<p style="line-height: 40px;">地址：${confirmation.companyAddress!""}</p>
-				<p style="line-height: 40px;">单位：${confirmation.company!""}</p>
+				<p style="line-height: 40px;">地址： </p>
+				<p style="line-height: 40px;">单位： </p>
 			</div>
 
 			<div class="page-group">
-				<p class="indent">本公司聘请的中汇会计师事务所（特殊普通合伙）正在对本公司<ins>&nbsp;${confirmation.section!""}&nbsp;</ins>财务报表进行审计，按照中国注册会计师审计准则的要求，应当询证本公司与贵公司的往来账项等事项。下列数据出自本公司账簿记录，如与贵公司记录相符，请在本函下端“数据证明无误”处签章证明；如有不符，请在“数据不符”处签章并列明不符金额。</p>
+				<p class="indent">本公司聘请的中汇会计师事务所（特殊普通合伙）正在对本公司<ins>&nbsp; &nbsp;</ins>财务报表进行审计，按照中国注册会计师审计准则的要求，应当询证本公司与贵公司的往来账项等事项。下列数据出自本公司账簿记录，如与贵公司记录相符，请在本函下端“数据证明无误”处签章证明；如有不符，请在“数据不符”处签章并列明不符金额。</p>
 				<p class="indent">回函请直接寄至中汇会计师事务所（特殊普通合伙）。</p>
 				<p class="indent">收件人：函证中心&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;回函地址：杭州市钱江新城新业路8号UDC时代大厦A座23层</p>
 				<p class="indent">邮编：310016&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;联系电话：(0571)-88879019</p>
@@ -72,39 +72,37 @@
 						</tr>
 					</table>
 				</div>
-				<#list contact as item>
-				<div class="tablewrap">
+ 				<div class="tablewrap">
 					<table>
 						<tr>
-							<td class="border" style="width: 100px">${item.subject!""}</td>
-							<td class="border" style="width: 100px">${item.endTime!""}</td>
+							<td class="border" style="width: 100px"> </td>
+							<td class="border" style="width: 100px"> </td>
 							<#if (item.owes)??>
-								<td class="border amount" style="width: 100px">${item.owes?string(",##0.00")}</td>
+								<td class="border amount" style="width: 100px"> </td>
 							<#else>
 								<td class="border" style="width: 100px">&nbsp;</td>
 							</#if>
 							<#if (item.owed)??>
-								<td class="border amount" style="width: 100px">${item.owed?string(",##0.00")}</td>
+								<td class="border amount" style="width: 100px"> </td>
 							<#else>
 								<td class="border" style="width: 100px">&nbsp;</td>
 							</#if>
 							<#if (item.accural)??>
-								<td class="border amount" style="width: 100px">${item.accural?string(",##0.00")}</td>
+								<td class="border amount" style="width: 100px"> </td>
 							<#else>
 								<td class="border" style="width: 100px">&nbsp;</td>
 							</#if>
-							<td class="border" style="width: 100px">${item.remark!""}</td>
+							<td class="border" style="width: 100px"> </td>
 						</tr>
 					</table>
 				</div>
-				</#list>
-			</div>
+ 			</div>
 
 			<div class="page-group tablewrap">
 				<p class="indent">2. 其他事项：</p>
 				<table style="margin-top: 5px;">
 					<tr style="height: 60px;">
-						<td class="border" style="vertical-align: top; width: 100%; padding: 0px 10px; text-align: left;">${confirmation.other!""}&nbsp;</td>
+						<td class="border" style="vertical-align: top; width: 100%; padding: 0px 10px; text-align: left;"> &nbsp;</td>
 					</tr>
 				</table>
 				<div style="font-size: 12px;">说明：本函仅为复核账目之用，并非催款结算。若款项在上述日期之后已付清，仍请及时函复为盼。</div>

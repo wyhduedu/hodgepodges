@@ -1,6 +1,5 @@
 package com.wy.hodgepodges;
 
-import com.wy.hodgepodges.config.ConfigAdapter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,7 +15,7 @@ import javax.servlet.ServletRegistration;
  */
 @Slf4j
 @SpringBootApplication
-public class Hodgepodges implements WebApplicationInitializer {
+public class Hodgepodges implements   WebApplicationInitializer {
 
     public static void main(String[] args) {
         SpringApplication.run(Hodgepodges.class, args);
@@ -26,7 +25,6 @@ public class Hodgepodges implements WebApplicationInitializer {
     public void onStartup(ServletContext servletContext)  {
         log.info("加载配置文件");
         AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
-        context.register(ConfigAdapter.class);
         context.setServletContext(servletContext);
         ServletRegistration.Dynamic dynamic = servletContext.addServlet("dispatcher",new DispatcherServlet(context));
         dynamic.addMapping("/");

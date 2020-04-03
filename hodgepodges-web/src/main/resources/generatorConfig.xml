@@ -27,7 +27,7 @@
         <!--数据库连接 -->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
                         connectionURL="jdbc:mysql://test.database3802.scsite.net:3802/gic_promotion"
-                        userId="souche_rw"
+                        userId="s-o-u-c-h-e_rw"
                         password="uYqyBpvSn7vqGVMy">
         </jdbcConnection>
         <!--默认false

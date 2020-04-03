@@ -30,13 +30,16 @@ public class PdfGenerator {
 
 	public void generate(String htmlStr, OutputStream out) throws IOException, DocumentException, CssResolverException {
 
+//		htmlStr =   htmlStr/*.replaceAll("\"", "'")*/.replaceAll("<style>", "<style>body{font-family:SimSun;font-size:14px;}");
+
+
 		Document document = new Document(PageSize.A4, 30, 30, 30, 30);
 		document.setMargins(30, 30, 30, 30);
 		PdfWriter writer = PdfWriter.getInstance(document, out);
 		// 页脚（第几页）
 		PdfFileExportUtil pdfFileExportUtil = new PdfFileExportUtil();
 		writer.setPageEvent(pdfFileExportUtil.new HeadFootInfoPdfPageEvent());
-		writer.setPageEvent(pdfFileExportUtil.new PictureWaterMarkPdfPageEvent("D:\\tmp\\1.png"));
+//		writer.setPageEvent(pdfFileExportUtil.new PictureWaterMarkPdfPageEvent("D:\\tmp\\1.png"));
 		document.open();
 
 		// html内容解析
@@ -65,11 +68,8 @@ public class PdfGenerator {
 			@Override
 			public HtmlPipelineContext clone() throws CloneNotSupportedException {
 				HtmlPipelineContext context = super.clone();
-				try {
-					ImageProvider imageProvider = this.getImageProvider();
-					context.setImageProvider(imageProvider);
-				} catch (NoImageProviderException e) {
-				}
+				ImageProvider imageProvider = this.getImageProvider();
+				context.setImageProvider(imageProvider);
 				return context;
 			}
 		};
