@@ -1,8 +1,5 @@
 package com.wy.hodgepodges.common;
 
-import com.wy.hodgepodges.config.ConfigAdapter;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
 /**
  * @author wy
  * @version V1.0
@@ -12,8 +9,8 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 public class SchedulerTest {
 
     public static void main(String[] args) {
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
-        context.getBean(ConfigAdapter.class);
+//        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+//        context.getBean(ConfigAdapter.class);
 
     }
 }

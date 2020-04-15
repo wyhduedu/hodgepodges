@@ -10,3 +10,10 @@ spring:
       # 是否启用ElasticSearch存储库 默认为true
       repositories:
         enabled: true
+
+
+network.host: 0.0.0.0
+
+#因为需要跨服务器访问，所以需要允许外部访问
+http.cors.enabled: true
+http.cors.allow-origin: "*"

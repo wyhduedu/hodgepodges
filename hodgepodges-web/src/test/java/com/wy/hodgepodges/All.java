@@ -1,7 +1,5 @@
 package com.wy.hodgepodges;
 
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -9,47 +7,27 @@ import java.util.concurrent.locks.ReentrantLock;
  * @author wy
  * @version V1.0
  * @desc 滑动窗口算法
- * @date 2019-11-26 17:43
+ * @date 2019-11-27:43
  */
 public class All {
 
-    public static void main(String[] args) {
-        int[] arr = {100, 200, 300, 400, 600};
-//        System.out.println(aaa(arr,2));
-        System.out.println("sdsdj".matches("^[A-Za-z0-9]{15,20}$"));
-        Lock lock = new Lock() {
-            @Override
-            public void lock() {
 
-            }
-
-            @Override
-            public void lockInterruptibly() throws InterruptedException {
-
-            }
-
-            @Override
-            public boolean tryLock() {
-                return false;
-            }
-
-            @Override
-            public boolean tryLock(long time, TimeUnit unit) throws InterruptedException {
-                return false;
-            }
-
-            @Override
-            public void unlock() {
-
-            }
-
-            @Override
-            public Condition newCondition() {
-                return null;
-            }
-        };
-
+    public static void main(String[] args) throws ClassNotFoundException {
+        ClassLoader loader = All.class.getClassLoader();
+        System.out.println(loader);
+        //一、 使用ClassLoader.loadClass()来加载类，不会执行初始化块
+//        loader.loadClass("All");
+        //二、 使用Class.forName()来加载类，默认会执行初始化块
+        Class.forName("All");
+        //三、使用Class.forName()来加载类，指定ClassLoader，初始化时不执行静态块
+        Class.forName("All", false, loader);
     }
+
+    static {
+        System.out.println("我是静态代码块。。。。");
+    }
+
+
 
     /**
      * 相连最大和

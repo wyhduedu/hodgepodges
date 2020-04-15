@@ -1,11 +1,6 @@
-package com.wy.hodgepodges.common.elasticSearch;
+package com.wy.hodgepodges.moudle.vo;
 
-/**
- * @author wy
- * @version V1.0
- * @desc
- * @date 2020-03-31 14:55
- */
+
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
@@ -16,6 +11,12 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import java.util.Date;
 
+/**
+ * @author wy
+ * @version V1.0
+ * @desc 日志
+ * @date 2020-04-05 21:45
+ */
 
 @Data
 @Document(indexName = "blog",type = "blogInfo",shards = 1,replicas = 1)
@@ -56,3 +57,4 @@ public class BlogInfo {
     private String content;
 
 }
+

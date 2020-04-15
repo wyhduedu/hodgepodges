@@ -9,4 +9,11 @@
     </parent>
     <artifactId>hodgepodges-manager</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.wy</groupId>
+            <artifactId>hodgepodges-dao</artifactId>
+        </dependency>
+    </dependencies>
+
 </project>

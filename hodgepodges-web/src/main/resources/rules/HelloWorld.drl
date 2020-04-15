@@ -1,0 +1,21 @@
+package com.wy.hodgepodges
+import com.wy.hodgepodges.common.drools.Message
+
+dialect  "mvel"
+
+rule "Hello World"
+    dialect "mvel"
+    when
+        m : Message( status.equals(Message.HELLO)  )
+    then
+        System.out.println( m.getMessage()+"nbddnb nbsd bns bn");
+    modify ( m ) { message = "Goodbye cruel world",status = Message.GOODBYE };
+end
+
+rule "Good Bye"
+    dialect "java"
+    when
+       Message( status == Message.GOODBYE, message : message )
+    then
+        System.out.println( message +"jhhhh");
+end

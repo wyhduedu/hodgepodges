@@ -5,8 +5,6 @@ import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.TestConfiguration;
@@ -30,11 +28,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ContextConfiguration(classes = ConfigAdapter.class)
 @WebAppConfiguration("src/main/resources")
 @SpringBootTest
-@PropertySource( "classpath:application1.properties" )
+@PropertySource( "classpath:application.properties" )
 public class WebApplicationTests  {
 
-    @Value("${aaaa.aaaa}")
-    private String  aa;
 
     @Autowired
     MockMvc mockMvc;

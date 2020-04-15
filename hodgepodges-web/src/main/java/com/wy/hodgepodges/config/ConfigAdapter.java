@@ -9,16 +9,12 @@ import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.scheduling.annotation.AsyncConfigurer;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
@@ -37,8 +33,6 @@ import java.util.concurrent.Executor;
  * @date 2019-11-01 11:31
  */
 @Slf4j
-@Configuration
-@EnableWebMvc
 @EnableScheduling
 @EnableAsync
 @EnableDubbo
@@ -49,10 +43,10 @@ import java.util.concurrent.Executor;
 @EnableSwagger2
 @EnableTransactionManagement
 @EnableBatchProcessing
-@ComponentScan("com.wy.hodgepodges")
-public class ConfigAdapter /*extends WebMvcConfigurationSupport*/ implements AsyncConfigurer {
 
-    @Override
+public class ConfigAdapter   {
+
+//    @Override
     public Executor getAsyncExecutor() {
         ThreadPoolTaskExecutor taskExecutor = new ThreadPoolTaskExecutor();
         taskExecutor.setCorePoolSize(5);
@@ -63,7 +57,7 @@ public class ConfigAdapter /*extends WebMvcConfigurationSupport*/ implements Asy
 
     }
 
-    @Override
+//    @Override
     public AsyncUncaughtExceptionHandler getAsyncUncaughtExceptionHandler() {
         return null;
     }
