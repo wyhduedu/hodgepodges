@@ -7,13 +7,15 @@ import java.util.Set;
 
 public class Solution1 {
     public List<String> findRepeatedDnaSequences(String s) {
-        //ACGT的SCII码的二进制表示，由此可知取后2位或者3位我们可以区分这4个字母
-        //这里我们以取后3位来区分
-        //     A: 1000001
-        //     C: 1000011
-        //     G: 1000111
-        //     T: 1010100
-        //记录不是第一次遍历到的结果
+        /**
+         * ACGT的SCII码的二进制表示，由此可知取后2位或者3位我们可以区分这4个字母
+         * 这里我们以取后3位来区分
+         *  A: 1000001
+         *  C: 1000011
+         *  G: 1000111
+         *  T: 1010100
+         *  记录不是第一次遍历到的结果
+         */
         Set<String> result = new HashSet();
         //记录第一次遍历到的结果
         Set<Integer> visited = new HashSet();

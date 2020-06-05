@@ -3,6 +3,7 @@
     <kbase name="rules" packages="rules">
         <ksession name="ksession-rules"/>
     </kbase>
+
     <kbase name="base" packages="rules.refuse">
         <ksession name="session-base"/>
     </kbase>

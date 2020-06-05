@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wy.hodgepodges.dao.mapper.ParentMapper">
+    <resultMap id="BaseResultMap" type="com.wy.hodgepodges.moudle.vo.CityCateGoryVo">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="parent_id" property="parentId" jdbcType="INTEGER"/>
+        <result column="department" property="department" jdbcType="VARCHAR"/>
+        <collection column="id=id" property="cityList"
+                    javaType="java.util.ArrayList"
+                    ofType="com.wy.hodgepodges.moudle.vo.CityCateGoryVo" select="getNextSysOrgTree"/>
+    </resultMap>
+
+    <!--定义嵌套集合查询语句，查询条件由调用处通过column设定-->
+    <select id="getNextSysOrgTree" resultType="com.wy.hodgepodges.moudle.vo.CityCateGoryVo">
+        SELECT
+        *
+        FROM t_partent
+        WHERE id = #{identity }
+        and departemnet_id = #{id}
+    </select>
+
+    <sql id="table">  t_parent</sql>
+
+    <select id="selectTree" resultMap="BaseResultMap">
+         select * from t_parent where id = #{id}
+    </select>
+
+</mapper>

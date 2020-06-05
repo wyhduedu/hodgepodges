@@ -1,5 +1,9 @@
 package com.wy.hodgepodges;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.util.HashMap;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -20,7 +24,6 @@ public class aaaa {
 
         public void execute(String flag) {
             rl.lock();
-
             try {
                 for (int i = 1 ; i <= 10 ; i++) {
                     if ("A".equals(flag)) {
@@ -49,8 +52,9 @@ public class aaaa {
         }
     }
 
-
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
+        FileInputStream inputStream = new FileInputStream(new File("jdj"));
+        HashMap map= new HashMap();
         final MyTask myTask = new MyTask();
         new Thread(() -> myTask.execute("A"), "A").start();
         new Thread(() -> myTask.execute("B"), "B").start();

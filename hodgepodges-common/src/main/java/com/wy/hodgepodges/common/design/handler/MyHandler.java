@@ -21,6 +21,7 @@ public class MyHandler extends AbstractHandler implements Handler {
             getHandler().operator();
         }
     }
+
     public static void main(String[] args) {
         MyHandler h1 = new MyHandler("h1");
         MyHandler h2 = new MyHandler("h2");

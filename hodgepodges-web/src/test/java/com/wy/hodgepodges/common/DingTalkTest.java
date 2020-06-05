@@ -1,4 +1,4 @@
-package com.wy.hodgepodges;
+package com.wy.hodgepodges.common;
 
 import com.alibaba.fastjson.JSONObject;
 import com.dingtalk.api.DefaultDingTalkClient;
@@ -8,14 +8,15 @@ import com.dingtalk.api.response.OapiCallBackRegisterCallBackResponse;
 import com.taobao.api.ApiException;
 
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author wy
  * @version V1.0
  * @desc
- * @date 2019-11-29 21:30
+ * @date 2020-04-19 14:00
  */
-public class cfdf extends WebApplicationTests{
+public class DingTalkTest {
 
     public static void main(String[] args)  {
 
@@ -31,6 +32,9 @@ public class cfdf extends WebApplicationTests{
         } catch (ApiException e) {
             e.printStackTrace();
         }
+
+
+
 
 
     }

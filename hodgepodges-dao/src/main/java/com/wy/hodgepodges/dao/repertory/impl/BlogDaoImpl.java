@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.elasticsearch.core.query.SearchQuery;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -17,9 +18,11 @@ import java.util.Optional;
  * @date 2020-04-05 21:53
  */
 public class BlogDaoImpl implements BlogDao {
-    @Override
-    public void queryAllByContent(String str) {
 
+    @Override
+    public List<String> queryAllByContent(String str) {
+
+        return null;
     }
 
     @Override

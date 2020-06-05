@@ -4,6 +4,8 @@ import com.wy.hodgepodges.common.asyn.AsyncTaskService;
 import com.wy.hodgepodges.config.ConfigAdapter;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import java.util.HashMap;
+
 /**
  * @author wy
  * @version V1.0
@@ -19,5 +21,7 @@ public class AsyncTest {
             asyncTaskService.executeAsyncTaskPlus(i);
         }
         context.close();
+
+        HashMap<Object,Object> map = new HashMap<>();
     }
 }

@@ -7,14 +7,18 @@ import org.springframework.batch.core.configuration.annotation.EnableBatchProces
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.annotation.AsyncConfigurer;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
+import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
@@ -33,20 +37,20 @@ import java.util.concurrent.Executor;
  * @date 2019-11-01 11:31
  */
 @Slf4j
+@Configuration
 @EnableScheduling
 @EnableAsync
 @EnableDubbo
-@EnableCaching
 @Cacheable
 @CachePut
 @CacheEvict
 @EnableSwagger2
 @EnableTransactionManagement
 @EnableBatchProcessing
+@ComponentScan("com.wy.hodgepodges")
+public class ConfigAdapter /*extends WebMvcConfigurationSupport*/ implements AsyncConfigurer {
 
-public class ConfigAdapter   {
-
-//    @Override
+    @Override
     public Executor getAsyncExecutor() {
         ThreadPoolTaskExecutor taskExecutor = new ThreadPoolTaskExecutor();
         taskExecutor.setCorePoolSize(5);
@@ -57,25 +61,25 @@ public class ConfigAdapter   {
 
     }
 
-//    @Override
+    @Override
     public AsyncUncaughtExceptionHandler getAsyncUncaughtExceptionHandler() {
         return null;
     }
 
 
 //    @Override
-//    protected void addViewControllers(ViewControllerRegistry registry) {
-//        registry.addViewController("/login").setViewName("login");
-//        registry.addViewController("/toUpload").setViewName("/upload");
-//    }
+    protected void addViewControllers(ViewControllerRegistry registry) {
+        registry.addViewController("/login").setViewName("login");
+        registry.addViewController("/toUpload").setViewName("/upload");
+    }
 
     /**
      * 解决请求路径带.的url失效问题
      */
 //    @Override
-//    protected void configurePathMatch(PathMatchConfigurer configurer) {
-//        configurer.setUseRegisteredSuffixPatternMatch(false);
-//    }
+    protected void configurePathMatch(PathMatchConfigurer configurer) {
+        configurer.setUseRegisteredSuffixPatternMatch(false);
+    }
 
     @Bean
     public MultipartResolver multipartResolver() {

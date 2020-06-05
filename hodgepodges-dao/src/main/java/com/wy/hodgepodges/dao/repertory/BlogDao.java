@@ -5,6 +5,8 @@ import com.wy.hodgepodges.moudle.vo.BlogInfo;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * @author wy
  * @version V1.0
@@ -16,6 +18,6 @@ import org.springframework.stereotype.Repository;
 public interface BlogDao extends ElasticsearchRepository<BlogInfo,String> {
 
     // 可以用jpa 语法
-    void queryAllByContent(String str);
+    List<String> queryAllByContent(String str);
 }
 
