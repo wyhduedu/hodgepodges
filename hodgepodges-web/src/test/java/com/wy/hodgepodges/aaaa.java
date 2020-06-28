@@ -1,9 +1,10 @@
 package com.wy.hodgepodges;
 
-import java.io.File;
-import java.io.FileInputStream;
+import com.google.common.util.concurrent.RateLimiter;
+
 import java.io.FileNotFoundException;
-import java.util.HashMap;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -53,12 +54,23 @@ public class aaaa {
     }
 
     public static void main(String[] args) throws FileNotFoundException {
-        FileInputStream inputStream = new FileInputStream(new File("jdj"));
-        HashMap map= new HashMap();
-        final MyTask myTask = new MyTask();
-        new Thread(() -> myTask.execute("A"), "A").start();
-        new Thread(() -> myTask.execute("B"), "B").start();
-        new Thread(() -> myTask.execute("C"), "C").start();
+//        final MyTask myTask = new MyTask();
+//        new Thread(() -> myTask.execute("A"), "A").start();
+//        new Thread(() -> myTask.execute("B"), "B").start();
+//        new T(hread(() -> myTask.execute("C"), "C").start();
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd HH:mm:ss.SSS");
+
+        RateLimiter rateLimiter = RateLimiter.create(3);
+
+        while(true) {
+
+            rateLimiter.acquire();
+
+            System.out.println(simpleDateFormat.format(new Date()));
+
+        }
+
     }
 
 }

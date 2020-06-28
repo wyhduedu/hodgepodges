@@ -80,6 +80,28 @@ public class Solution {
     }
 
 
+    /**
+     * 爬楼梯
+     * 斐波那契数列算法
+     * f(n) = f(n-1) +f(n-2)
+     * @param n
+     * @return
+     */
+    public static int climbStairs(int n) {
+        return climb_Stairs(0, n);
+    }
+
+    public static int climb_Stairs(int i, int n) {
+        if (i > n) {
+            return 0;
+        }
+        if (i == n) {
+            return 1;
+        }
+        return climb_Stairs(i + 1, n) + climb_Stairs(i + 2, n);
+    }
+
+
     public static void main(String[] args) {
         ListNode b = new ListNode(7);
 //        ListNode a = new ListNode(4);

@@ -1,12 +1,12 @@
 package com.wy.hodgepodges.demo;
 
-import com.mchange.v1.util.Sublist;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.apache.curator.RetryPolicy;
+import org.apache.curator.framework.CuratorFramework;
+import org.apache.curator.framework.CuratorFrameworkFactory;
+import org.apache.curator.framework.recipes.locks.InterProcessMutex;
+import org.apache.curator.retry.ExponentialBackoffRetry;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import java.util.concurrent.TimeUnit;
 /**
  * @author wy
  * @version V1.0
@@ -14,31 +14,28 @@ import java.util.List;
  * @date 2019-12-03 09:55
  */
 
-@SpringBootTest
-@Slf4j
 public class Test1 {
-
-    private static List<List<Integer>> data = new ArrayList<>();
-
-
-
-    public static void main(String[] args) {
-//        for (int i = 0; i < 1000; i++) {
-//            List<Integer> rawList = IntStream.rangeClosed(1, 100000).boxed().collect(Collectors.toList());
-//            data.add(rawList.subList(0, 1));
-//        }
-        List<Integer> integers =new ArrayList<>();
-        integers.add(1);
-        integers.add(2);
-        integers.add(3);
-        integers.add(4);
-        List<Integer> subList = integers.subList(0,2);
-        subList.set(0,10);
-        integers.set(1,20);
-        System.out.println(integers);
-        System.out.println(subList);
-        Sublist sublist = new Sublist();
-
+    public static void main(String[] args) throws Exception {
+        RetryPolicy retryPolicy = new ExponentialBackoffRetry(1000, 3);
+        CuratorFramework client = CuratorFrameworkFactory.newClient("192.168.245.101:2181", retryPolicy);
+        client.start();
+        InterProcessMutex lock = new InterProcessMutex(client, "/mylock");
+        //lock.acquire(1000, TimeUnit.MILLISECONDS) 获取锁，超时时间为1000毫秒
+        if ( lock.acquire(1000, TimeUnit.MILLISECONDS) )
+        {
+            try
+            {
+                System.out.println("得到锁，并执行");
+                //模拟线程需要执行很长时间，观察ZK中/mylock下的临时ZNODE情况
+                Thread.sleep(10000000);
+            }
+            finally
+            {
+                lock.release();
+                System.out.println("释放锁");
+            }
+        }
     }
+
 
 }

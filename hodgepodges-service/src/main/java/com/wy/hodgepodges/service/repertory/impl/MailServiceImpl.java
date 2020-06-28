@@ -1,6 +1,5 @@
 package com.wy.hodgepodges.service.repertory.impl;
 
-
 import com.wy.hodgepodges.service.repertory.MailService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -10,7 +9,6 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
-
 
 /**
  * @Author: wkl

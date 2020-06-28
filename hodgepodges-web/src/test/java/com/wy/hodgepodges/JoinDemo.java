@@ -2,7 +2,10 @@ package com.wy.hodgepodges;
 
 import com.google.common.collect.Maps;
 
-import java.util.concurrent.*;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ConcurrentMap;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.CyclicBarrier;
 
 /**
  * @author wy
@@ -28,6 +31,7 @@ public class JoinDemo extends Thread{
         System.out.println("name->"+Thread.currentThread().getName());
         System.out.println("num:"+i);
     }
+
     public static void main(String[] args) throws Exception {
         Thread previousThread=Thread.currentThread();
         for(int i=0;i<10;i++){
@@ -52,6 +56,8 @@ public class JoinDemo extends Thread{
             return null;
         };
         callable.call();
+        CountDownLatch ab = new  CountDownLatch(2);
+        ab.countDown();
 
     }
 }
