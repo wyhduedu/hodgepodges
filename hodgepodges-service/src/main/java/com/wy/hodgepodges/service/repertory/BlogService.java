@@ -7,5 +7,5 @@ package com.wy.hodgepodges.service.repertory;
  * @date 2020-04-05 21:52
  */
 public interface BlogService {
-
+    void  execute();
 }

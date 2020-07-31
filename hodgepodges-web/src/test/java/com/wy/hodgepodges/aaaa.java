@@ -1,10 +1,10 @@
 package com.wy.hodgepodges;
 
-import com.google.common.util.concurrent.RateLimiter;
+import com.wy.hodgepodges.service.repertory.BlogService;
+import sun.misc.Service;
 
-import java.io.FileNotFoundException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.Iterator;
+import java.util.ServiceLoader;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -26,7 +26,7 @@ public class aaaa {
         public void execute(String flag) {
             rl.lock();
             try {
-                for (int i = 1 ; i <= 10 ; i++) {
+                for (int i = 1; i <= 10; i++) {
                     if ("A".equals(flag)) {
                         System.out.println(Thread.currentThread().getName() + " - " + i);
                         conditionB.signal();
@@ -53,23 +53,32 @@ public class aaaa {
         }
     }
 
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) {
+        Iterator<BlogService> providers = Service.providers(BlogService.class);
+        ServiceLoader<BlogService> load = ServiceLoader.load(BlogService.class);
+
+        while (providers.hasNext()) {
+            BlogService ser = providers.next();
+            ser.execute();
+        }
+        System.out.println("--------------------------------");
+        Iterator<BlogService> iterator = load.iterator();
+        while (iterator.hasNext()) {
+            BlogService ser = iterator.next();
+            ser.execute();
+        }
 //        final MyTask myTask = new MyTask();
 //        new Thread(() -> myTask.execute("A"), "A").start();
 //        new Thread(() -> myTask.execute("B"), "B").start();
 //        new T(hread(() -> myTask.execute("C"), "C").start();
 
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd HH:mm:ss.SSS");
+//        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd HH:mm:ss.SSS");
+//        RateLimiter rateLimiter = RateLimiter.create(3);
+//        while(true) {
+//            rateLimiter.acquire();
+//            System.out.println(simpleDateFormat.format(new Date()));
+//        }
 
-        RateLimiter rateLimiter = RateLimiter.create(3);
-
-        while(true) {
-
-            rateLimiter.acquire();
-
-            System.out.println(simpleDateFormat.format(new Date()));
-
-        }
 
     }
 
