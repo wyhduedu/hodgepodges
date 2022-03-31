@@ -46,7 +46,7 @@
         <okhttp.version>3.11.0</okhttp.version>
         <dingtalk-chatbot-sdk.version>0.9.0-SNAPSHOT</dingtalk-chatbot-sdk.version>
         <JUnit.version>4.12</JUnit.version>
-        <spring.boot.version>2.2.1.RELEASE</spring.boot.version>
+        <spring.boot.version>2.5.12</spring.boot.version>
         <mybatis.spring.boot.version>2.1.1</mybatis.spring.boot.version>
         <fastjson.version>1.2.67</fastjson.version>
 
