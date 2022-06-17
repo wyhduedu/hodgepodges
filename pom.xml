@@ -48,7 +48,7 @@
         <JUnit.version>4.12</JUnit.version>
         <spring.boot.version>2.2.1.RELEASE</spring.boot.version>
         <mybatis.spring.boot.version>2.1.1</mybatis.spring.boot.version>
-        <fastjson.version>1.2.67</fastjson.version>
+        <fastjson.version>1.2.83</fastjson.version>
 
     </properties>
 
