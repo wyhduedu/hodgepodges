@@ -25,7 +25,7 @@
         <version.ga>GA</version.ga><!-- 正式发布 -->
         <java.version>1.8</java.version>
         <bumblebee.version>1.0.4-SNAPSHOT</bumblebee.version>
-        <spring.version>5.2.4.RELEASE</spring.version>
+        <spring.version>5.2.20.RELEASE</spring.version>
         <cglib.version>2.2.2</cglib.version>
         <timestamp>${maven.build.timestamp}</timestamp>
         <project.encoding>utf-8</project.encoding>
@@ -183,7 +183,7 @@
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-webmvc</artifactId>
-                <version>5.2.4.RELEASE</version>
+                <version>5.2.20.RELEASE</version>
             </dependency>
 
             <dependency>
